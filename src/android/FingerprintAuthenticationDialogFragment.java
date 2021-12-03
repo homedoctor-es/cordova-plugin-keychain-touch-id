@@ -18,6 +18,8 @@ package com.cordova.plugin.android.fingerprintauth;
 
 import android.app.Activity;
 import android.app.DialogFragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -60,7 +62,18 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment
 
     public FingerprintAuthenticationDialogFragment() {
     }
-
+    
+    @Override
+    public void show(FragmentManager manager, String tag) {
+        try {
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.add(this, tag);
+            ft.commitAllowingStateLoss();
+        } catch (IllegalStateException e) {
+            Log.d("FingerprintAuthenticati", "Exception", e);
+        }
+    }
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
