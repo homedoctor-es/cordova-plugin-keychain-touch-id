@@ -78,8 +78,9 @@ static const UInt8 kKeychainItemIdentifier[]    = "com.apple.dts.KeychainUI\0";
             if (outDictionary) CFRelease(outDictionary);
         } else {
             // Any other error is unexpected.
-            NSAssert(NO, @"Serious error.\n");
+            //NSAssert(NO, @"Serious error.\n");
             if (outDictionary) CFRelease(outDictionary);
+            return nil;
         }
     }
     
